@@ -7,18 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
+#import "AdditionQuestion.h"
+#import "SubtractionQuestion.h"
+#import "MultiplicationQuestion.h"
+#import "DivisionQuestion.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSLog(@"MATHS!\n\n");
         
         ScoreKeeper* scoreKeeper = [[ScoreKeeper alloc] init];
+        QuestionManager* questionManger = [[QuestionManager alloc] init];
         while(YES) {
             
-            AdditionQuestion* additionQuestion = [[AdditionQuestion alloc] init];
+           AdditionQuestion* additionQuestion = [[AdditionQuestion alloc] init];
+            
+            // Every time we create an addition question, we add to the question manager for management
+            [questionManger.questions addObject:additionQuestion];
             
             NSLog(@"%@\n", additionQuestion.question);
             
@@ -38,6 +46,7 @@ int main(int argc, const char * argv[]) {
             }
             
             [scoreKeeper reportScore];
+            NSLog(@"%@", [questionManger timeOutput]);
         }
     }
     return 0;

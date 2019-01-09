@@ -1,17 +1,16 @@
 //
-//  AdditionQuestion.h
+//  DivisionQuestion.h
 //  Maths
 //
-//  Created by Jun Oh on 2019-01-08.
+//  Created by Jun Oh on 2019-01-09.
 //  Copyright © 2019 Jun Oh. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Question.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AdditionQuestion : Question
+@interface DivisionQuestion : Question
 
 @end
 

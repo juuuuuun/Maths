@@ -10,27 +10,19 @@
 
 @implementation AdditionQuestion
 
-- (instancetype) init {
-    if (self = [super init]) {
-        
-        // arc4random_uniform outputs a random number from 0-90
-        unsigned int firstRandomNumber = 10 + arc4random_uniform(91);
-        unsigned int secondRandomNumber = 10 + arc4random_uniform(91);
-        
-        _question = [[NSString alloc] initWithFormat:@"%i + %i ?", firstRandomNumber, secondRandomNumber];
-        _answer = firstRandomNumber + secondRandomNumber;
-        
-        _startTime = [NSDate date];
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self generateQuestion];
     }
     return self;
 }
 
-- (NSTimeInterval)answerTime {
-    return [_endTime timeIntervalSinceDate:_startTime];
+- (void)generateQuestion {
+    
+    super.question = [[NSString alloc] initWithFormat:@"%lu + %lu ?", super.leftValue, super.rightValue];
+    super.answer = super.leftValue + super.rightValue;
 }
 
--(NSInteger)answer {
-    _endTime = [NSDate date];
-    return _answer;
-}
 @end
