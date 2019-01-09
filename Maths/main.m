@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
             
             NSLog(@"%@\n", additionQuestion.question);
             
-            NSString* inputString = [InputHandler parseInputs];
+            NSString* inputString = [InputHandler parseInput];
             
             // If the user inputs string "quit", break out of the while loop to end the game
             if([inputString isEqualToString:@"quit"]) {
