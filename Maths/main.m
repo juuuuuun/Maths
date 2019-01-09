@@ -10,6 +10,7 @@
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
 #import "QuestionManager.h"
+#import "QuestionFactory.h"
 #import "AdditionQuestion.h"
 #import "SubtractionQuestion.h"
 #import "MultiplicationQuestion.h"
@@ -21,14 +22,15 @@ int main(int argc, const char * argv[]) {
         
         ScoreKeeper* scoreKeeper = [[ScoreKeeper alloc] init];
         QuestionManager* questionManger = [[QuestionManager alloc] init];
+        QuestionFactory* questionFactory = [[QuestionFactory alloc] init];
         while(YES) {
             
-           AdditionQuestion* additionQuestion = [[AdditionQuestion alloc] init];
+           Question* randomQuestion = [questionFactory generateRandomQuestion];
             
             // Every time we create an addition question, we add to the question manager for management
-            [questionManger.questions addObject:additionQuestion];
+            [questionManger.questions addObject:randomQuestion];
             
-            NSLog(@"%@\n", additionQuestion.question);
+            NSLog(@"%@\n", randomQuestion.question);
             
             NSString* inputString = [InputHandler parseInput];
             
@@ -37,7 +39,7 @@ int main(int argc, const char * argv[]) {
                 break;
             }
             
-            if(additionQuestion.answer == [inputString intValue]) {
+            if(randomQuestion.answer == [inputString intValue]) {
                 scoreKeeper.numberOfRights++;
                 NSLog(@"Right!");
             } else {
